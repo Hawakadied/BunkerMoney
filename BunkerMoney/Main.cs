@@ -78,7 +78,7 @@ namespace BunkerMoney
 
 		private void OnLoad(object sender, EventArgs e)
 		{
-			//IsGameRunning();
+			IsGameRunning();
 		}
 
 		private int ParseNum(string s)
