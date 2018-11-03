@@ -8,8 +8,15 @@ namespace BunkerMoney
 	public partial class Main : Form
 	{
 
+		string version = "v0.2";
+
 		public Process proc;
 		public long BaseAddress;
+
+		int scPTR = 0x2C995A8;
+		int steamPTR = 0x2C9EB78;
+
+		bool isSC = false;
 
 		[DllImport("kernel32.dll")]
 		public static extern int WriteProcessMemory(IntPtr Handle, long Address, byte[] buffer, int Size, int BytesWritten = 0);
@@ -35,7 +42,17 @@ namespace BunkerMoney
 					progressBar1.Value = 10;
 					BaseAddress = GetBaseAddress("GTA5.exe");
 					progressBar1.Value = 25;
-					long ptr = GetPointerAddress(BaseAddress + 0x2C9EB78, new int[] { 0x1180, 0x4088 });
+					long ptr;
+
+					if (isSC)
+					{
+						 ptr = GetPointerAddress(BaseAddress + scPTR, new int[] { 0x1180, 0x4088 });
+					}
+					else
+					{
+						ptr = GetPointerAddress(BaseAddress + steamPTR, new int[] { 0x1180, 0x4088 });
+					}
+
 					progressBar1.Value = 30;
 
 					int pricePerPacket = price / amt;
@@ -68,7 +85,8 @@ namespace BunkerMoney
 
 		private void SCCheck(object sender, EventArgs e)
 		{
-			MessageBox.Show("This Box does not do anything right now \nIn new versions it will be used to Toggle SocialClub Mode", "Warning");
+			MessageBox.Show((checkBox1.Checked ? "Activated" : "Deactivated") + " Socialclub Mode", "Info");
+			isSC = checkBox1.Checked;
 		}
 
 		private void ExitButton(object sender, EventArgs e)
@@ -96,7 +114,7 @@ namespace BunkerMoney
 			int x = ParseNum(s);
 			if (x == -13371337)
 			{
-				MessageBox.Show(s + " is not a Number!", "Warning");
+				MessageBox.Show("'" + s + "' is not a Number!", "Warning");
 				return false;
 			}
 			return true;
