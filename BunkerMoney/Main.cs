@@ -8,8 +8,6 @@ namespace BunkerMoney
 	public partial class Main : Form
 	{
 
-		string version = "v0.2";
-
 		public Process proc;
 		public long BaseAddress;
 
@@ -25,6 +23,7 @@ namespace BunkerMoney
 
 		public Main()
 		{
+			version = "v0.2";
 			InitializeComponent();
 		}
 
@@ -34,8 +33,8 @@ namespace BunkerMoney
 			{
 				try
 				{
-					int amt = ParseNum(textBox1.Text);
-					int price = ParseNum(textBox2.Text);
+					int price = ParseNum(textBox1.Text);
+					int amt = ParseNum(textBox2.Text);
 					int multiplier = ParseNum(textBox3.Text);
 
 					proc = getProcess("GTA5");

@@ -6,6 +6,7 @@
 		/// Erforderliche Designervariable.
 		/// </summary>
 		private System.ComponentModel.IContainer components = null;
+		public string version = "null";
 
 		/// <summary>
 		/// Verwendete Ressourcen bereinigen.
@@ -55,7 +56,7 @@
 			// label1
 			// 
 			this.label1.Cursor = System.Windows.Forms.Cursors.Default;
-			this.label1.Location = new System.Drawing.Point(12, 9);
+			this.label1.Location = new System.Drawing.Point(12, 50);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(210, 13);
 			this.label1.TabIndex = 1;
@@ -71,7 +72,7 @@
 			// 
 			// label2
 			// 
-			this.label2.Location = new System.Drawing.Point(12, 48);
+			this.label2.Location = new System.Drawing.Point(12, 7);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(210, 15);
 			this.label2.TabIndex = 3;
@@ -124,9 +125,8 @@
 			this.label4.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
 			this.label4.Location = new System.Drawing.Point(12, 194);
 			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(167, 13);
+			this.label4.Size = new System.Drawing.Size(0, 13);
 			this.label4.TabIndex = 9;
-			this.label4.Text = "Complexicon\'s BunkerMoney " + version;
 			// 
 			// checkBox1
 			// 
