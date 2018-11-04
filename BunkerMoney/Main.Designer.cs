@@ -125,8 +125,9 @@
 			this.label4.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
 			this.label4.Location = new System.Drawing.Point(12, 194);
 			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(0, 13);
+			this.label4.Size = new System.Drawing.Size(49, 13);
 			this.label4.TabIndex = 9;
+			this.label4.Text = "omegalul";
 			// 
 			// checkBox1
 			// 

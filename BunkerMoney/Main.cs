@@ -23,8 +23,9 @@ namespace BunkerMoney
 
 		public Main()
 		{
-			version = "v0.2";
 			InitializeComponent();
+			version = "v0.2.1";
+			this.label4.Text = "Complexicon\'s BunkerMoney " + version;
 		}
 
 		private void ApplyButton(object sender, EventArgs e)
