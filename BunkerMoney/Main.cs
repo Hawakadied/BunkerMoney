@@ -8,108 +8,66 @@ namespace BunkerMoney
 	public partial class Main : Form
 	{
 
-		public Process proc;
-		public long BaseAddress;
-
-		int scPTR = 0x2C995A8;
-		int steamPTR = 0x2C9EB78;
-
-		bool isSC = false;
-
 		[DllImport("kernel32.dll")]
 		public static extern int WriteProcessMemory(IntPtr Handle, long Address, byte[] buffer, int Size, int BytesWritten = 0);
 		[DllImport("kernel32.dll")]
 		public static extern int ReadProcessMemory(IntPtr Handle, long Address, byte[] buffer, int Size, int BytesRead = 0);
 
+		public Process proc;
+		public long baseAddr;
+
+		int scPTR = 0x2C995A8;
+		int steamPTR = 0x2C9EB78;
+
+		int[] bunkerOff = new int[] { 0x1180, 0x4088 };
+
+		bool isSC = false;
+
 		public Main()
 		{
 			InitializeComponent();
-			version = "v0.2.1";
-			this.label4.Text = "Complexicon\'s BunkerMoney " + version;
+			version = "v0.2.5";
+			info.Text = version + " by Complexicon";
 		}
 
 		private void ApplyButton(object sender, EventArgs e)
 		{
-			if (IsNum(textBox1.Text) && IsNum(textBox2.Text) && IsNum(textBox3.Text))
+			if (CheckGTA())
 			{
-				try
+				if (IsNum(priceBox.Text) && IsNum(deliverAmtBox.Text) && IsNum(wantedMoneyBox.Text))
 				{
-					int price = ParseNum(textBox1.Text);
-					int amt = ParseNum(textBox2.Text);
-					int multiplier = ParseNum(textBox3.Text);
-
-					proc = getProcess("GTA5");
-					progressBar1.Value = 10;
-					BaseAddress = GetBaseAddress("GTA5.exe");
-					progressBar1.Value = 25;
-					long ptr;
-
-					if (isSC)
+					try
 					{
-						 ptr = GetPointerAddress(BaseAddress + scPTR, new int[] { 0x1180, 0x4088 });
-					}
-					else
-					{
-						ptr = GetPointerAddress(BaseAddress + steamPTR, new int[] { 0x1180, 0x4088 });
-					}
+						int price = ParseNum(priceBox.Text);
+						int amt = ParseNum(deliverAmtBox.Text);
+						int multiplier = ParseNum(wantedMoneyBox.Text);
 
-					progressBar1.Value = 30;
+						int amtForMil = 1000000 / (price / amt);
 
-					int pricePerPacket = price / amt;
-					int amtForMil = 0;
-					for (int i = 1; (i * pricePerPacket) < 1000000; i++)
-					{
-						amtForMil = i;
-					}
-					progressBar1.Value = 80;
+						proc = GetProcess("GTA5");
+						baseAddr = GetBaseAddress("GTA5.exe");
 
-					WriteInteger(ptr, (amtForMil * multiplier));
-					progressBar1.Value = 100;
-					MessageBox.Show("Done! Destroy Delivery Vehicle and Enjoy :)", "Yay!");
-					progressBar1.Value = 0;
-				}
-				catch
-				{
-					progressBar1.Value = 100;
-					MessageBox.Show("There was an Error during the Procedure!", "Error");
-					progressBar1.Value = 0;
-				}
-			}
-			else
-			{
-				progressBar1.Value = 100;
-				MessageBox.Show("Please make sure you used Numbers!", "Warning");
-				progressBar1.Value = 0;
+						long ptr = isSC
+							? GetPtrAddr(baseAddr + scPTR, bunkerOff)
+							: GetPtrAddr(baseAddr + steamPTR, bunkerOff);
+
+						WriteInteger(ptr, (amtForMil * multiplier));
+						MessageBox.Show("Done! Destroy Delivery Vehicle and Enjoy :)", "Yay!");
+
+					} catch { MessageBox.Show("There was an Error during the Procedure!", "Error"); }
+				} else { MessageBox.Show("Please make sure you used Numbers!", "Warning"); }
 			}
 		}
 
 		private void SCCheck(object sender, EventArgs e)
 		{
-			MessageBox.Show((checkBox1.Checked ? "Activated" : "Deactivated") + " Socialclub Mode", "Info");
-			isSC = checkBox1.Checked;
+			MessageBox.Show((scBox.Checked ? "Activated" : "Deactivated") + " Socialclub Mode", "Info");
+			isSC = scBox.Checked;
 		}
 
-		private void ExitButton(object sender, EventArgs e)
-		{
-			Application.Exit();
-		}
+		private static int ParseNum(string s) => !int.TryParse(s, out int i) ? -13371337 : i;
 
-		private void OnLoad(object sender, EventArgs e)
-		{
-			IsGameRunning();
-		}
-
-		private int ParseNum(string s)
-		{
-			int i;
-			if (!int.TryParse(s, out i))
-			{
-				return -13371337;
-			}
-			return i;
-		}
-
-		private bool IsNum(string s)
+		private static bool IsNum(string s)
 		{
 			int x = ParseNum(s);
 			if (x == -13371337)
@@ -120,16 +78,11 @@ namespace BunkerMoney
 			return true;
 		}
 
-		public static bool IsGameRunning()
+		public static bool CheckGTA()
 		{
-			Process[] process = Process.GetProcessesByName("GTA5");
-			if (process.Length == 0)
+			if (Process.GetProcessesByName("GTA5").Length == 0)
 			{
-				if (MessageBox.Show("You need to run GTA5. Closing Menu!", "Critical Scary Error") == System.Windows.Forms.DialogResult.OK)
-				{
-
-				}
-				Application.Exit();
+				MessageBox.Show("Please Make Sure GTA5 is Running!", "Critical Error");
 				return false;
 			}
 			return true;
@@ -143,29 +96,21 @@ namespace BunkerMoney
 			}
 			catch
 			{
-				IsGameRunning();
+				CheckGTA();
 				return IntPtr.Zero;
 			}
 		}
 
-		public Process getProcess(string name)
-		{
-			return Process.GetProcessesByName(name)[0];
-		}
+		public static Process GetProcess(string name) => Process.GetProcessesByName(name)[0];
 
-		public void WriteInteger(long Address, int Value)
-		{
-			WriteProcessMemory(GetProcessHandle(), Address, BitConverter.GetBytes(Value), 4);
-		}
+		public void WriteInteger(long Address, int Value) => WriteProcessMemory(GetProcessHandle(), Address, BitConverter.GetBytes(Value), 4);
 
 		public long GetBaseAddress(string ModuleName)
 		{
 			try
 			{
-				ProcessModuleCollection modules = proc.Modules;
 				ProcessModule DLLBaseAddress = null;
-
-				foreach (ProcessModule i in modules)
+				foreach (ProcessModule i in proc.Modules)
 				{
 					if (i.ModuleName == ModuleName)
 					{
@@ -181,7 +126,7 @@ namespace BunkerMoney
 			}
 		}
 
-		public long GetPointerAddress(long Pointer, int[] Offset = null)
+		public long GetPtrAddr(long Pointer, int[] Offset = null)
 		{
 			byte[] Buffer = new byte[8];
 
