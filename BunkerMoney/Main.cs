@@ -16,17 +16,19 @@ namespace BunkerMoney
 		public Process proc;
 		public long baseAddr;
 
+		//Not Working RN
 		int scPTR = 0x2C995A8;
-		int steamPTR = 0x2C9EB78;
 
-		int[] bunkerOff = new int[] { 0x1180, 0x4088 };
+		int steamPTR = 0x2D0F2C8;
+
+		int[] bunkerOff = new int[] { 0x1180, 0x4128 };
 
 		bool isSC = false;
 
 		public Main()
 		{
 			InitializeComponent();
-			version = "v0.2.5";
+			version = "v0.2.7";
 			info.Text = version + " by Complexicon";
 		}
 
@@ -62,7 +64,8 @@ namespace BunkerMoney
 		private void SCCheck(object sender, EventArgs e)
 		{
 			MessageBox.Show((scBox.Checked ? "Activated" : "Deactivated") + " Socialclub Mode", "Info");
-			isSC = scBox.Checked;
+			MessageBox.Show("Socialclub Mode isnt working Right now i am Sorry :(", "Info");
+			//isSC = scBox.Checked;
 		}
 
 		private static int ParseNum(string s) => !int.TryParse(s, out int i) ? -13371337 : i;
