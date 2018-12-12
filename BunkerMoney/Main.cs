@@ -16,8 +16,7 @@ namespace BunkerMoney
 		public Process proc;
 		public long baseAddr;
 
-		//Not Working RN
-		int scPTR = 0x2C995A8;
+		int scPTR = 0x2D09BE8;
 
 		int steamPTR = 0x2D0F2C8;
 
@@ -28,7 +27,7 @@ namespace BunkerMoney
 		public Main()
 		{
 			InitializeComponent();
-			version = "v0.2.7";
+			version = "v0.2.8";
 			info.Text = version + " by Complexicon";
 		}
 
