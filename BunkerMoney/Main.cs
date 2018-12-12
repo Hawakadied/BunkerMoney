@@ -63,8 +63,7 @@ namespace BunkerMoney
 		private void SCCheck(object sender, EventArgs e)
 		{
 			MessageBox.Show((scBox.Checked ? "Activated" : "Deactivated") + " Socialclub Mode", "Info");
-			MessageBox.Show("Socialclub Mode isnt working Right now i am Sorry :(", "Info");
-			//isSC = scBox.Checked;
+			isSC = scBox.Checked;
 		}
 
 		private static int ParseNum(string s) => !int.TryParse(s, out int i) ? -13371337 : i;
