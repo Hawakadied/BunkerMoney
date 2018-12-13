@@ -25,19 +25,34 @@ namespace BunkerMoney
 
 		bool isSC = false;
 
+		string url = "https://raw.githubusercontent.com/Complexicon/BunkerMoney/master/BunkerMoney/offsets.ini";
+
 		public Main()
 		{
 
-
 			using (WebClient client = new WebClient())
 			{
-				string s = client.DownloadString("");
-				
+				try
+				{
+					string s = client.DownloadString(url);
+					string[] lines = s.Split(Environment.NewLine.ToCharArray());
+					foreach (string l in lines)
+					{
+						if (l.StartsWith("scPTR")) scPTR = Convert.ToInt32(l.Substring(6), 16);
+						if (l.StartsWith("steamPTR")) steamPTR = Convert.ToInt32(l.Substring(9), 16);
+						if (l.StartsWith("offset1")) bunkerOff[0] = Convert.ToInt32(l.Substring(8), 16);
+						if (l.StartsWith("offset2")) bunkerOff[1] = Convert.ToInt32(l.Substring(8), 16);
+					}
+				}
+				catch
+				{
+					MessageBox.Show("Couldn't load Remote Offsets! Using local Offsets!", "Warning");
+				}
 			}
 
 
 			InitializeComponent();
-			version = "v0.2.9";
+			version = "v0.3";
 			info.Text = version + " by Complexicon";
 		}
 
