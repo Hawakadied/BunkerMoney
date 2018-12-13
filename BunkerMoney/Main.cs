@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Net;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
@@ -26,8 +27,17 @@ namespace BunkerMoney
 
 		public Main()
 		{
+
+
+			using (WebClient client = new WebClient())
+			{
+				string s = client.DownloadString("");
+				
+			}
+
+
 			InitializeComponent();
-			version = "v0.2.8";
+			version = "v0.2.9";
 			info.Text = version + " by Complexicon";
 		}
 
@@ -53,7 +63,7 @@ namespace BunkerMoney
 							: GetPtrAddr(baseAddr + steamPTR, bunkerOff);
 
 						WriteInteger(ptr, (amtForMil * multiplier));
-						MessageBox.Show("Done! Destroy Delivery Vehicle and Enjoy :)", "Yay!");
+						MessageBox.Show("Done! Check the Delivery Amount and if correct Destroy Delivery Vehicle and Enjoy :)", "Yay!");
 
 					} catch { MessageBox.Show("There was an Error during the Procedure!", "Error"); }
 				} else { MessageBox.Show("Please make sure you used Numbers!", "Warning"); }
