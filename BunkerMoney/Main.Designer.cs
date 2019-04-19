@@ -31,152 +31,144 @@
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
 			this.button1 = new System.Windows.Forms.Button();
-			this.delivery = new System.Windows.Forms.TextBox();
-			this.label2 = new System.Windows.Forms.Label();
 			this.info = new System.Windows.Forms.Label();
-			this.panel1 = new System.Windows.Forms.Panel();
-			this.label1 = new System.Windows.Forms.Label();
-			this.panel2 = new System.Windows.Forms.Panel();
-			this.initPrice = new System.Windows.Forms.TextBox();
-			this.label3 = new System.Windows.Forms.Label();
 			this.panel3 = new System.Windows.Forms.Panel();
-			this.money = new System.Windows.Forms.TextBox();
-			this.panel1.SuspendLayout();
-			this.panel2.SuspendLayout();
+			this.button2 = new System.Windows.Forms.Button();
+			this.delivery = new System.Windows.Forms.TextBox();
+			this.label1 = new System.Windows.Forms.Label();
+			this.initPrice = new System.Windows.Forms.TextBox();
+			this.label2 = new System.Windows.Forms.Label();
 			this.panel3.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(8, 130);
+			this.button1.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+			this.button1.FlatAppearance.BorderSize = 0;
+			this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkRed;
+			this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
+			this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.button1.ForeColor = System.Drawing.Color.White;
+			this.button1.Location = new System.Drawing.Point(0, 80);
 			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(119, 31);
+			this.button1.Padding = new System.Windows.Forms.Padding(3);
+			this.button1.Size = new System.Drawing.Size(125, 30);
 			this.button1.TabIndex = 6;
 			this.button1.Text = "Apply";
 			this.button1.UseVisualStyleBackColor = true;
 			this.button1.Click += new System.EventHandler(this.ApplyButton);
 			// 
-			// delivery
-			// 
-			this.delivery.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.delivery.Cursor = System.Windows.Forms.Cursors.IBeam;
-			this.delivery.Location = new System.Drawing.Point(3, 3);
-			this.delivery.Name = "delivery";
-			this.delivery.Size = new System.Drawing.Size(111, 20);
-			this.delivery.TabIndex = 0;
-			// 
-			// label2
-			// 
-			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(12, 48);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(96, 13);
-			this.label2.TabIndex = 3;
-			this.label2.Text = "Delivery Packages";
-			this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
 			// info
 			// 
 			this.info.AutoSize = true;
-			this.info.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-			this.info.Location = new System.Drawing.Point(5, 164);
+			this.info.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.info.ForeColor = System.Drawing.Color.White;
+			this.info.Location = new System.Drawing.Point(3, 2);
 			this.info.Name = "info";
-			this.info.Size = new System.Drawing.Size(118, 13);
+			this.info.Size = new System.Drawing.Size(104, 12);
 			this.info.TabIndex = 9;
-			this.info.Text = "by Complexicon with <3";
-			this.info.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-			this.info.Click += new System.EventHandler(this.info_Click);
+			this.info.Text = "v5.1 by Complexicon <3";
+			this.info.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.info.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Panel_MouseDown);
+			this.info.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Panel_MouseMove);
+			this.info.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Panel_MouseUp);
 			// 
-			// panel1
+			// panel3
 			// 
-			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.panel1.Controls.Add(this.delivery);
-			this.panel1.Location = new System.Drawing.Point(8, 57);
-			this.panel1.Margin = new System.Windows.Forms.Padding(2, 4, 2, 2);
-			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(119, 28);
-			this.panel1.TabIndex = 10;
+			this.panel3.BackColor = System.Drawing.Color.Red;
+			this.panel3.Controls.Add(this.button2);
+			this.panel3.Controls.Add(this.info);
+			this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+			this.panel3.Location = new System.Drawing.Point(0, 0);
+			this.panel3.Name = "panel3";
+			this.panel3.Size = new System.Drawing.Size(125, 15);
+			this.panel3.TabIndex = 13;
+			this.panel3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Panel_MouseDown);
+			this.panel3.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Panel_MouseMove);
+			this.panel3.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Panel_MouseUp);
+			// 
+			// button2
+			// 
+			this.button2.Dock = System.Windows.Forms.DockStyle.Right;
+			this.button2.FlatAppearance.BorderSize = 0;
+			this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Maroon;
+			this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.button2.ForeColor = System.Drawing.Color.White;
+			this.button2.Location = new System.Drawing.Point(105, 0);
+			this.button2.Name = "button2";
+			this.button2.Size = new System.Drawing.Size(20, 15);
+			this.button2.TabIndex = 0;
+			this.button2.Text = "X";
+			this.button2.UseVisualStyleBackColor = true;
+			this.button2.Click += new System.EventHandler(this.button2_Click);
+			// 
+			// delivery
+			// 
+			this.delivery.BackColor = System.Drawing.Color.Black;
+			this.delivery.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.delivery.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.delivery.ForeColor = System.Drawing.Color.White;
+			this.delivery.Location = new System.Drawing.Point(0, 60);
+			this.delivery.Name = "delivery";
+			this.delivery.Size = new System.Drawing.Size(125, 20);
+			this.delivery.TabIndex = 14;
 			// 
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(12, 9);
+			this.label1.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.label1.ForeColor = System.Drawing.Color.White;
+			this.label1.Location = new System.Drawing.Point(0, 47);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(78, 13);
-			this.label1.TabIndex = 11;
-			this.label1.Text = "Initial Sell Price";
-			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
-			// panel2
-			// 
-			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.panel2.Controls.Add(this.initPrice);
-			this.panel2.Location = new System.Drawing.Point(8, 18);
-			this.panel2.Margin = new System.Windows.Forms.Padding(2, 4, 2, 2);
-			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(119, 28);
-			this.panel2.TabIndex = 12;
+			this.label1.Size = new System.Drawing.Size(84, 13);
+			this.label1.TabIndex = 15;
+			this.label1.Text = "Delivery Amount";
 			// 
 			// initPrice
 			// 
+			this.initPrice.BackColor = System.Drawing.Color.Black;
 			this.initPrice.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.initPrice.Cursor = System.Windows.Forms.Cursors.IBeam;
-			this.initPrice.Location = new System.Drawing.Point(3, 3);
+			this.initPrice.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.initPrice.ForeColor = System.Drawing.Color.White;
+			this.initPrice.Location = new System.Drawing.Point(0, 27);
 			this.initPrice.Name = "initPrice";
-			this.initPrice.Size = new System.Drawing.Size(111, 20);
-			this.initPrice.TabIndex = 0;
+			this.initPrice.Size = new System.Drawing.Size(125, 20);
+			this.initPrice.TabIndex = 16;
 			// 
-			// label3
+			// label2
 			// 
-			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(12, 87);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(88, 13);
-			this.label3.TabIndex = 13;
-			this.label3.Text = "Money (in Million)";
-			this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
-			// panel3
-			// 
-			this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.panel3.Controls.Add(this.money);
-			this.panel3.Location = new System.Drawing.Point(8, 96);
-			this.panel3.Name = "panel3";
-			this.panel3.Size = new System.Drawing.Size(119, 28);
-			this.panel3.TabIndex = 14;
-			// 
-			// money
-			// 
-			this.money.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.money.Cursor = System.Windows.Forms.Cursors.IBeam;
-			this.money.Location = new System.Drawing.Point(3, 3);
-			this.money.Name = "money";
-			this.money.Size = new System.Drawing.Size(111, 20);
-			this.money.TabIndex = 0;
+			this.label2.AutoSize = true;
+			this.label2.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.label2.ForeColor = System.Drawing.Color.White;
+			this.label2.Location = new System.Drawing.Point(0, 14);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(58, 13);
+			this.label2.TabIndex = 17;
+			this.label2.Text = "Initial Price";
 			// 
 			// Main
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(134, 176);
-			this.Controls.Add(this.label3);
-			this.Controls.Add(this.panel3);
-			this.Controls.Add(this.label1);
-			this.Controls.Add(this.panel2);
+			this.BackColor = System.Drawing.Color.Black;
+			this.ClientSize = new System.Drawing.Size(125, 110);
 			this.Controls.Add(this.label2);
-			this.Controls.Add(this.panel1);
-			this.Controls.Add(this.info);
+			this.Controls.Add(this.initPrice);
+			this.Controls.Add(this.label1);
+			this.Controls.Add(this.delivery);
+			this.Controls.Add(this.panel3);
 			this.Controls.Add(this.button1);
-			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "Main";
+			this.Opacity = 0.7D;
 			this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
-			this.panel1.ResumeLayout(false);
-			this.panel1.PerformLayout();
-			this.panel2.ResumeLayout(false);
-			this.panel2.PerformLayout();
+			this.Text = "BunkerMoney";
 			this.panel3.ResumeLayout(false);
 			this.panel3.PerformLayout();
 			this.ResumeLayout(false);
@@ -187,16 +179,13 @@
 		#endregion
 
 		private System.Windows.Forms.Button button1;
-		private System.Windows.Forms.TextBox delivery;
-		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Label info;
-		private System.Windows.Forms.Panel panel1;
-		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.Panel panel2;
-		private System.Windows.Forms.TextBox initPrice;
-		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Panel panel3;
-		private System.Windows.Forms.TextBox money;
+		private System.Windows.Forms.Button button2;
+		private System.Windows.Forms.TextBox delivery;
+		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.TextBox initPrice;
+		private System.Windows.Forms.Label label2;
 	}
 }
 
